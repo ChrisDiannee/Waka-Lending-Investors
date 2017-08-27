@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+		<link rel="icon" href="img/code.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+
+        <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   
+		<title>Users</title>
+	</head>
+<body>
+ <div class="form">
+
+<br>
+<br><br>
+
+<h1>Successfully Created</h1>
+<br>
+<br>
+<br>
+		<div align="center">
+          <a href="com.menu.html" >
+             <button type="submit" class="button button-block2" >back to menu</button>
+         </a>
+</div>
+
+
+		<!-- <div class="container">
+			<div class="striped">
+				<h1 class="title">Active Users</h1>
+
+				<table class="table table-inverse">
+				  <thead>
+				    <tr>
+				      <th>ID</th>
+				      <th>Name</th>
+				      <th>email</th>
+				      <th>Profile</th>
+				    </tr>
+				  </thead>
+				  <tbody id="tblNames">
+				    <tr>
+				      <th scope="row">1</th>
+				      <td><a href="/mark">Mark</a></td>
+				      <td>Otto</td>
+				      <td>@indianrapper</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">2</th>
+				      <td><a href="/jacob">Jacob</a></td>
+				      <td>Thornton</td>
+				      <td>@fatass</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">3</th>
+				      <td><a href="/larry">Larry</a></td>
+				      <td>the Bird</td>
+				      <td>@theLegend</td>
+				    </tr>
+				    
+				  </tbody id = "tblNames">
+				</table>
+
+
+
+
+
+
+
+				<div ">
+						<a href="index.html" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Log Out</a>
+				</div>
+				</div>
+		</div> -->
+</div>
+		<script>
+		function readUser(){
+					let jns_parse = JSON.parse(localStorage.getItem('json_accounts'));
+					console.log(jns_parse);
+
+					let html=``;
+					jns_parse.map((name)=>{
+			
+					html += `
+					<tr>
+			      		<td>${name.id}</td>
+			      		<td>${name.name}</td>
+			      		<td>${name.email}</td>
+			      		<td><img src="http://lorempixel.com/100/100/people/"/></td>
+			    	</tr>
+					`;
+					});
+					document.querySelector('#tblNames').innerHTML = html;
+				}
+		</script>
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+        <script src="js/add_account.js"></script>
+            <script src="js/login_true.js"></script>
+
+
+
+
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+	</body>
+</html>

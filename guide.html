@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	Name:
+	<input type="text" id="txtName">
+	<!-- calling the function "addName"  -->
+	<button onclick="addName1()">Add to local Storage</button>
+	<button onclick="arrayname()">Add to array names</button>
+	<button onclick="addName2()">list of names</button>
+	<button onclick="jasonnames()">JSON_NAME</button>
+	<button onclick="forloop()">loop</button>
+	<button onclick="forloop2()">looping2</button>
+
+	
+	<button onclick="sample1()">delete</button>
+	
+	<!-- creating a table
+		"table>thead>tr>th*2"
+	-->
+	<table border="1">
+
+		<thead>
+			<tr>
+				<th>Names</th>
+				<th>Gender</th>
+			</tr>
+		</thead>
+	<!--creating table
+		 tbody>tr*2>td*2 
+	-->
+		<tbody id="tblNames">
+			
+		</tbody>
+	</table>
+
+
+	<script>
+	sample1();
+	//creating a function so it wont execute untill being called.
+	function	sample1(){
+		let msg = "Hello World"
+		console.log(msg);
+		localStorage.setItem('msg','Hello'); //set key and value in application lcal storage
+		sessionStorage.setItem('msg',' World'); //set key and value in application in session storage
+		let str1= localStorage.getItem('msg');
+		let str2= sessionStorage.getItem('msg');
+		console.log(str1+str2); // concatenate str1 which is Hello, from the local storage and str2 from session storage
+		//view result in the Console
+		localStorage.removeItem('msg'); //remove item from the application local storage
+		localStorage.clear();
+		sessionStorage.clear();
+	} 
+	let names = ['Clyde','Chester'];
+	function	addName(){
+		let name = document.querySelector('#txtName').value;
+		names.push(name);
+		localStorage.setItem('names',names);
+	}
+	function	addName1(){
+		let name = document.querySelector('#txtName').value;
+		names.push(name);
+		localStorage.setItem('names',names);
+		let lsNames= localStorage.getItem('names')
+		console.log(lsNames);
+	}
+	function arrayname(){
+		console.log(names)
+	};
+	function	addName2(){
+		let name = document.querySelector('#txtName').value;
+		names.push(name);
+		localStorage.setItem('names',names);
+		let lsNames= localStorage.getItem('names')
+		let listOfNames=lsNames.split(',')
+		console.log(listOfNames[0]);
+	}
+	//[]= array, {}= object. it could be multiple [{},{},{})]
+	let json_names=[{ //puting a bracket from start and end to accept multiple names or values
+		name: "Chris",
+		gender: "M"
+	},{
+		name:"Dianne",
+		gender: "F"
+	}];
+	function	jasonnames(){
+		console.log(json_names);
+		let jns = JSON.stringify(json_names); //API method converting from JSON- to String
+		localStorage.setItem('json_names',jns);
+		//kung "json_names" ang tawagon [{object object}ang iyang e display], kaya jns kay na convert na sya from json to string
+		let jns_retreive = JSON.parse(localStorage.getItem('json_names'));
+		//convert from string to jason
+		console.log(jns_retreive);
+		//display certain object
+		//when geeting the array us bracket []
+		//when getting the object use dot notation(.)
+		console.log("Name is " + jns_retreive[0].name);
+		console.log("Gender is " + jns_retreive[0].gender);
+		
+		let html = `
+			<tr>
+				<td>${jns_retreive[0].name}</td>
+				<td>${jns_retreive[0].gender}</td>
+			</tr>
+			<tr>
+				<td>${jns_retreive[1].name}</td>
+				<td>${jns_retreive[1].gender}</td>
+			</tr>
+		`;
+		document.querySelector('#tblNames').innerHTML = html;
+	}
+	function	forloop(){
+		console.log(json_names);
+		let jns = JSON.stringify(json_names); //API method converting from JSON- to String
+		localStorage.setItem('json_names',jns);
+		//kung "json_names" ang tawagon [{object object}ang iyang e display], kaya jns kay na convert na sya from json to string
+		//array of objects "jns_retreive"
+		let jns_retreive = JSON.parse(localStorage.getItem('json_names'));
+		//convert from string to jason
+		console.log(jns_retreive);
+		//display certain object
+		//when geeting the array us bracket []
+		//when getting the object use dot notation(.)
+		console.log("Name is " + jns_retreive[0].name);
+		console.log("Gender is " + jns_retreive[0].gender);
+		let html = ``;
+		//updated way of writing function using arrow
+		//alternative of looping statement
+		//echma script way
+		//as6 way
+		jns_retreive.map((name)=>{
+			console.log(name.name);
+			console.log(name.gender);
+			console.log("-------");
+		});
+		//as5 way
+		for(let i=0;i<jns_retreive.length;i++){
+			console.log(jns_retreive[i].name);
+			console.log(jns_retreive[i].gender);
+			console.log("**********")
+		}
+		document.querySelector('#tblNames').innerHTML = html;
+	}
+	//creating another function to accept inputted name but have a static gender which is "M"
+	function	forloop2(){
+		let name = document.querySelector('#txtName').value;
+		let newName = {
+			name:name,
+			gender:"M"
+		};
+		json_names.push(newName);
+		console.log(json_names);
+		let jns = JSON.stringify(json_names); //API method converting from JSON- to String
+		localStorage.setItem('json_names',jns);
+		let jns_retreive = JSON.parse(localStorage.getItem('json_names'));
+		console.log(jns_retreive);
+		console.log("Name is " + jns_retreive[0].name);
+		console.log("Gender is " + jns_retreive[0].gender);
+/*		let html = `
+			<tr>
+				<td>${jns_retreive[0].name}</td>
+				<td>${jns_retreive[0].gender}</td>
+			</tr>
+			<tr>
+				<td>${jns_retreive[1].name}</td>
+				<td>${jns_retreive[1].gender}</td>
+			</tr>
+		`;
+*/	
+		let html = ``;
+		jns_retreive.map((name)=>{
+			html += `
+			<tr>
+				<td>${name.name}</td>
+				<td>${name.gender}</td>
+			</tr>
+			`;
+			
+		});
+		/*for(let i=0;i<jns_retreive.length;i++){
+			console.log(jns_retreive[i].name);
+			console.log(jns_retreive[i].gender);
+			console.log("**********")
+		}*/
+		document.querySelector('#tblNames').innerHTML = html;
+	}
+	</script>
+
+
+		
+</body>
+</html>
